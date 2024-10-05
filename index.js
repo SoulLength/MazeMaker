@@ -114,12 +114,12 @@ async function maze_build_from(x, y) {
 
 maze_build_from(Math.floor(generator() * (navWidth)), Math.floor(generator() * (navHeight))).then(() => {
     if (json) {
-        console.log({
+        console.log(JSON.stringify({
             width: width,
             height: height,
             seed: seed,
             matrix: mazeAbs
-        })
+        }))
     } else {
         printMaze()
         console.log("Size:", absWidth, "x", absWidth)
