@@ -13,7 +13,7 @@ options = program.opts();
 const width = Number(options.width) || 20;
 const height = Number(options.height) || 20;
 const seed = Number(options.seed) || Math.random(); //0.1295835173612654
-const simulate = options.simulate || false;
+const animate = options.animate || false;
 const delay = options.delay || 10;
 const json = options.json || false;
 
@@ -57,7 +57,7 @@ function printMaze() {
     for (let y = 0; y < mazeNav.length; y++) {
         result += "|";
         for (let x = 0; x < mazeNav[y].length; x++) {
-            if (simulate && current_pos.x == x && current_pos.y == y) result += "\x1b[47m";
+            if (animate && current_pos.x == x && current_pos.y == y) result += "\x1b[47m";
             result += (mazeNav[y][x] & S) != 0 ? " " : "_";
             result += "\x1b[0m"
             if ((mazeNav[y][x] & E) != 0) result += ((mazeNav[y][x] | mazeNav[y][x + 1]) & S) != 0 ? " " : "_";
@@ -93,7 +93,7 @@ async function maze_build_from(x, y) {
 
         current_pos = { x: x, y: y };
 
-        if (simulate) await stepSimulation();
+        if (animate) await stepSimulation();
 
         previous_pos = current_pos;
 
@@ -107,7 +107,7 @@ async function maze_build_from(x, y) {
     }
 
     current_pos = { x: x, y: y };
-    if (simulate) await stepSimulation();
+    if (animate) await stepSimulation();
 }
 
 
